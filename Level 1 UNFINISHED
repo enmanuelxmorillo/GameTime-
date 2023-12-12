@@ -1,0 +1,45 @@
+var ellipseY = 150; //Starting pos for balls
+var ellipseY2 = 150;
+var speed =1; //How fast the bounce is (circ)
+var speed2 = 2.5;
+var speed3 = 4; // rect
+var speed4 = 2;
+var rectX = 258;
+var rectX2 = 300;
+var rectY = 200;
+
+var draw = function() {
+    background(26, 23, 23);
+    //Draw boundaries
+    rect(0,74,354,7);
+    rect(44,164,354,7);
+    rect(0,248,354,7);
+    //Draw the balls
+    ellipse(100,ellipseY,15,15);
+    ellipse(150,ellipseY2,15,15);
+    ellipse(200,ellipseY,15,15);
+    ellipse(250,ellipseY2,15,15);
+    ellipse(300,ellipseY,15,15);
+    ellipseY += speed;
+    ellipseY2 += speed2;
+    //Create the bounce boundaries
+     if (ellipseY > 160 || ellipseY < 85) {
+        speed *= -1;
+     }
+     if (ellipseY2 > 160 || ellipseY2 < 85) {
+        speed2 *= -1;
+     }
+     rect(rectX2,200,11,11);
+     rect(rectX2,210,11,11);
+     rect(rectX,220,11,11);
+     rectX += speed3;
+     rectX2 += speed3;
+     rectY += speed3; 
+     if (rectX > 390 || rectX < 0) {
+        speed3 *= -1;
+     }
+     if (rectX2 > 390 || rectX2 < 0) {
+        speed3 *= -1;
+     }
+   
+};
