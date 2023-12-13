@@ -1,0 +1,77 @@
+//variables for level 2
+var speed = 1;
+var speed2 = 3;
+var speed3 = 2; // object speed
+var rectX = 0;
+var rectXr = 66;
+var rectX2 = 308;
+var rectX3 = 314;
+var rectX4 = 0;
+var rectY = 0;
+var ellipseY1 = 310; // Starting pos for balls
+var ellipseY2 = 380;
+var ellipseY3 = 390;
+var ellipseSpeed1 = 2; // Speed for the first ball
+var ellipseSpeed2 = -3; // Speed for the second ball
+var ellipseSpeed3 = -2.5;// speed for the third ball 
+
+var draw = function () {
+  //layout
+  background(20, 17, 17);
+  fill(245, 240, 240);
+  //boundaries
+  rect(0, 376, 399, 5);
+  rect(0, 307, 309, 5);
+  rect(69, 230, 397, 5);
+  rect(-1, 158, 319, 5);
+  rect(74, 78, 325, 5);
+
+  //all side rects
+  rect(rectX, 227, 11, 11); // rect1
+  rect(rectX2, 303, 10, 11);
+  rect(rectX3, 155, 11, 11);
+  rect(rectX4, 75, 11, 11);
+
+  // all the speeds
+  rectX += speed3;
+  rectX2 += speed3;
+  rectX3 += speed2;
+  rectX4 += speed2;
+
+  //the rect bounce loops
+  if (rectX === 60 || rectX === 0) {
+    speed3 *= -1;
+  }
+  if (rectX2 === 68 || rectX2 === 0) {
+    speed3 *= -1;
+  }
+  if (rectX3 === 314) {
+    speed2 += 6;
+  }
+  if (rectX3 === 395) {
+    speed2 *= -1;
+  }
+
+  // balls bounce part
+  ellipse(124, ellipseY1, 15, 15);
+  ellipse(199, ellipseY3, 15, 15);
+  ellipse(269, ellipseY2, 15, 15);
+
+  // Update the position of the ellipses
+  ellipseY1 += ellipseSpeed1;
+  ellipseY2 += ellipseSpeed2;
+  ellipseY3 += ellipseSpeed3;
+
+  // Check for collisions with the top and bottom boundaries for the first ball
+  if (ellipseY1 < 0 || ellipseY1 > 395) {
+    ellipseSpeed1 *= -1;
+  }
+
+  // Check for collisions with the top and bottom boundaries for the second ball
+  if (ellipseY2 < 0 || ellipseY2 > 395) {
+    ellipseSpeed2 *= -1;
+  }
+  if (ellipseY3 < 0 || ellipseY3 > 395) {
+    ellipseSpeed3 *= -1;
+  }
+};
