@@ -11,9 +11,11 @@ var rectY = 0;
 var ellipseY1 = 310; // Starting pos for balls
 var ellipseY2 = 380;
 var ellipseY3 = 390;
+var ellipseY4 = 394;
 var ellipseSpeed1 = 2; // Speed for the first ball
 var ellipseSpeed2 = -3; // Speed for the second ball
-var ellipseSpeed3 = -2.5;// speed for the third ball 
+var ellipseSpeed3 = -2.5;// speed for the third ball
+var ellipseSpeed4 = 1;
 
 var draw = function () {
   //layout
@@ -56,11 +58,13 @@ var draw = function () {
   ellipse(124, ellipseY1, 15, 15);
   ellipse(199, ellipseY3, 15, 15);
   ellipse(269, ellipseY2, 15, 15);
-
+  ellipse(378, ellipseY4, 15, 15);
+  ellipse(69, ellipseY4, 15, 15);
   // Update the position of the ellipses
   ellipseY1 += ellipseSpeed1;
   ellipseY2 += ellipseSpeed2;
   ellipseY3 += ellipseSpeed3;
+  ellipseY4 += ellipseSpeed4;
 
   // Check for collisions with the top and bottom boundaries for the first ball
   if (ellipseY1 < 0 || ellipseY1 > 395) {
@@ -73,5 +77,8 @@ var draw = function () {
   }
   if (ellipseY3 < 0 || ellipseY3 > 395) {
     ellipseSpeed3 *= -1;
+  }
+  if (ellipseY4 < 0 || ellipseY4 > 395) {
+    ellipseSpeed4 *= -1.5;
   }
 };
