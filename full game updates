@@ -229,14 +229,14 @@ var draw = function () {
     // background for scene 3 
      if (currentScene === 3) {
          background(26, 25, 25);
-         rect(5, 350, squareSize, squareSize);
+        
 
          
      } 
      if (currentScene === 3) {
         // Draw the square
     fill(113, 113, 156);
-    rect(squareX*0 + 5, squareY*0 + 350, squareSize, squareSize);
+    rect(squareX, squareY , squareSize, squareSize);
 
     // Check for keyboard input
     if (keyIsPressed) {
