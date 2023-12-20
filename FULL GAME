@@ -5,7 +5,7 @@
     var YstarPos = [];
     var lines = "! Dont\n     Lose !";
     var f = createFont("fantasy",75);
-    var currentScene = 4;// if scene is 0 player is back at start they must select  
+    var currentScene = 0;// if scene is 0 player is back at start they must select  
     var  drawBit = function(X,Y,h){
     noStroke();
          //head
