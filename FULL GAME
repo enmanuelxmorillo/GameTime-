@@ -5,7 +5,7 @@
     var YstarPos = [];
     var lines = "! Dont\n     Lose !";
     var f = createFont("fantasy",75);
-    var currentScene = 0;// if scene is 0 player is back at start they must select  
+    var currentScene = 4;// if scene is 0 player is back at start they must select  
     var  drawBit = function(X,Y,h){
     noStroke();
          //head
@@ -150,25 +150,25 @@
     var ellipseSpeed2 = -3; // Speed for the second ball
     var ellipseSpeed3 = -2.5;// speed for the third ball
     var ellipseSpeed4 = 1;
-    // Level 3 Variables
-var ellipseX1q = 50;
-var ellipseY1q = 350;
-var ellipseSpeedX1q = 2;
-var ellipseSpeedY1q = -2;
-
-var ellipseX2q = 200;
-var ellipseY2q = 200;
-var ellipseSpeedX2q = -3;
-var ellipseSpeedY2q = 3;
-
-var ellipseX3q = 300;
-var ellipseY3q = 100;
-var ellipseSpeedX3q = 1;
-var ellipseSpeedY3q = -1;
-
-var squareX = 20;
-var squareY = 20;
-var moving3 = false;
+        // Level 3 Variables
+    var ellipseX1q = 50;
+    var ellipseY1q = 350;
+    var ellipseSpeedX1q = 2;
+    var ellipseSpeedY1q = -2;
+    
+    var ellipseX2q = 200;
+    var ellipseY2q = 200;
+    var ellipseSpeedX2q = -3;
+    var ellipseSpeedY2q = 3;
+    
+    var ellipseX3q = 300;
+    var ellipseY3q = 100;
+    var ellipseSpeedX3q = 1;
+    var ellipseSpeedY3q = -1;
+    
+    var squareX = 20;
+    var squareY = 20;
+    var moving3 = false;
 
     // Square design var  
     var squareSize = 30;
@@ -339,21 +339,37 @@ var draw = function () {
     if(squareX > 10 && squareX < 50 && squareY > 305 && squareY < 350){
         currentScene = 3;
     }
-    if (dist(squareX + 10, squareY + 10, 100, ellipseYz) < 15 ||dist(squareX + 10, squareY + 10, 150, ellipseY2z) < 15 || dist(squareX + 10, squareY + 10, 200, ellipseYz) < 15 ||dist(squareX + 10, squareY + 10, 250, ellipseY2z) < 15 ||dist(squareX + 10, squareY + 10, 300, ellipseYz) < 15 || dist(squareX + 10, squareY + 10, 52, ellipseY3z) < 15 ||dist(squareX + 10, squareY + 10, 345, ellipseY3z) < 15 ||dist(squareX + 10, squareY + 10, 198, ellipseY4z) < 55 ||(squareX + 10 > rectXz && squareX < rectXz + 11 && squareY + 10 > 206 && squareY < 217) ||(squareX + 10 > rectX2z && squareX < rectX2z + 11 && squareY + 10 > 192 && squareY < 203) ||(squareX + 10 > rectXz && squareX < rectXz + 11 && squareY + 10 > 219 && squareY < 230)) {
-    squareX = 10;
-    squareY = 10;
+    if (
+        dist(squareX + 10, squareY + 10, 100, ellipseYz) < 15 ||
+        dist(squareX + 10, squareY + 10, 150, ellipseY2z) < 15 ||
+        dist(squareX + 10, squareY + 10, 200, ellipseYz) < 15 ||
+        dist(squareX + 10, squareY + 10, 250, ellipseY2z) < 15 ||
+        dist(squareX + 10, squareY + 10, 300, ellipseYz) < 15 ||
+        dist(squareX + 10, squareY + 10, 52, ellipseY3z) < 15 ||
+        dist(squareX + 10, squareY + 10, 345, ellipseY3z) < 15 ||
+        dist(squareX + 10, squareY + 10, 198, ellipseY4z) < 55 ||
+        (
+            // Check for collisions with the boundary rectangles
+            (squareX + 10 > 0 && squareX < 354 && squareY + 10 > 74 && squareY < 81) ||
+            (squareX + 10 > 44 && squareX < 398 && squareY + 10 > 164 && squareY < 171) ||
+            (squareX + 10 > 0 && squareX < 354 && squareY + 10 > 248 && squareY < 255)
+        )
+    ) {
+        squareX = 10;
+        squareY = 10;
     }
 }
 //LEVEL 2!!!!!!
-     if (currentScene === 3) {
-         background(26, 25, 25);
-        // Draw the square
+   if (currentScene === 3) {
+    background(26, 25, 25);
+
+    // Draw the square
     fill(113, 113, 156);
-    rect(squareX, squareY , squareSize, squareSize);
+    rect(squareX, squareY, squareSize, squareSize);
 
     // Check for keyboard input
     if (keyIsPressed) {
-         if (!moving2) {
+        if (!moving2) {
             moving2 = true;
             squareX = 10;
             squareY = 350;
@@ -368,92 +384,116 @@ var draw = function () {
             squareX += 5;
         }
     }
+
+    // Layout
+    fill(245, 240, 240);
     
-        
-  //layout
-  
-  fill(245, 240, 240);
-  //boundaries
-  fill(240, 231, 231);
-  strokeWeight(1);
-  stroke(235, 183, 235);
-  rect(0, 388, 399, 5);
-  rect(0, 307, 309, 5);
-  rect(69, 230, 397, 5);
-  rect(-1, 158, 319, 5);
-  rect(74, 78, 325, 5);
+    //hint 
+    textSize(15);
+        text("Be Aware you dont have to move right to move up ^?", 37, 124);
 
-  //all side rects
-  rect(rectX, 227, 11, 11); // rect1
-  rect(rectX2, 303, 10, 11);
-  rect(rectX3, 155, 11, 11);
-  rect(rectX4, 75, 11, 11);
+    // Boundaries
+    fill(240, 231, 231);
+    strokeWeight(1);
+    stroke(235, 183, 235);
+    rect(0, 388, 399, 5);
+    rect(0, 307, 309, 5);
+    rect(69, 230, 397, 5);
+    rect(-1, 158, 319, 5);
+    rect(74, 78, 325, 5);
 
-  // all the speeds
-  rectX += speed3;
-  rectX2 += speed3;
-  rectX3 += speed2;
-  rectX4 += speed2;
+    // All side rects
+    rect(rectX, 227, 11, 11); // rect1
+    rect(rectX2, 303, 10, 11);
+    rect(rectX3, 155, 11, 11);
+    rect(rectX4, 75, 11, 11);
 
-  //the rect bounce loops
-  if (rectX === 60 || rectX === 0) {
-    speed3 *= -1;
-  }
-  if (rectX2 === 68 || rectX2 === 0) {
-    speed3 *= -1;
-  }
-  if (rectX3 === 314) {
-    speed2 += 6;
-  }
-  if (rectX3 === 395) {
-    speed2 *= -1;
-  }
+    // All the speeds
+    rectX += speed3;
+    rectX2 += speed3;
+    rectX3 += speed2;
+    rectX4 += speed2;
 
-  // balls bounce part
-  ellipse(124, ellipseY1, 15, 15);
-  ellipse(199, ellipseY3, 15, 15);
-  ellipse(269, ellipseY2, 15, 15);
-  ellipse(378, ellipseY4, 15, 15);
-  ellipse(69, ellipseY4, 15, 15);
-  //  the position of the ellipses
-  ellipseY1 += ellipseSpeed1;
-  ellipseY2 += ellipseSpeed2;
-  ellipseY3 += ellipseSpeed3;
-  ellipseY4 += ellipseSpeed4;
+    // The rect bounce loops
+    if (rectX === 60 || rectX === 0) {
+        speed3 *= -1;
+    }
+    if (rectX2 === 68 || rectX2 === 0) {
+        speed3 *= -1;
+    }
+    if (rectX3 === 314) {
+        speed2 += 6;
+    }
+    if (rectX3 === 395) {
+        speed2 *= -1;
+    }
 
-  // Check for collisions with the top and bottom boundaries for the first ball
-  if (ellipseY1 < 0 || ellipseY1 > 395) {
-    ellipseSpeed1 *= -1;
-  }
+    // Balls bounce part
+    ellipse(124, ellipseY1, 15, 15);
+    ellipse(199, ellipseY3, 15, 15);
+    ellipse(269, ellipseY2, 15, 15);
+    ellipse(378, ellipseY4, 15, 15);
+    ellipse(69, ellipseY4, 15, 15);
 
-  // Check for collisions with the top and bottom boundaries for the second ball
-  if (ellipseY2 < 0 || ellipseY2 > 395) {
-    ellipseSpeed2 *= -1;
-  }
-  if (ellipseY3 < 0 || ellipseY3 > 395) {
-    ellipseSpeed3 *= -1;
-  }
-  if (ellipseY4 < 0 || ellipseY4 > 395) {
-    ellipseSpeed4 *= -1.5;
-  }
-  fill(0, 221, 255);
-  rect(344,20,40,40);
-  
-  if(squareY > 10 && squareY < 50 && squareX > 305 && squareX < 350){
+    // The position of the ellipses
+    ellipseY1 += ellipseSpeed1;
+    ellipseY2 += ellipseSpeed2;
+    ellipseY3 += ellipseSpeed3;
+    ellipseY4 += ellipseSpeed4;
+
+    // Check for collisions with the top and bottom boundaries for the first ball
+    if (ellipseY1 < 0 || ellipseY1 > 395) {
+        ellipseSpeed1 *= -1;
+    }
+
+    // Check for collisions with the top and bottom boundaries for the second ball
+    if (ellipseY2 < 0 || ellipseY2 > 395) {
+        ellipseSpeed2 *= -1;
+    }
+    if (ellipseY3 < 0 || ellipseY3 > 395) {
+        ellipseSpeed3 *= -1;
+    }
+    if (ellipseY4 < 0 || ellipseY4 > 395) {
+        ellipseSpeed4 *= -1.5;
+    }
+
+    // Finish box
+    fill(0, 221, 255);
+    rect(344, 20, 40, 40);
+
+    // Check for collisions with the finish box
+    if (squareY > 10 && squareY < 50 && squareX > 305 && squareX < 350) {
         currentScene = 4;
     }
-     if ((squareX + squareSize > rectX && squareX < rectX + 11 &&
-        squareY + squareSize > 227 && squareY < 238) ||
-        (squareX + squareSize > rectX2 && squareX < rectX2 + 10 &&
-        squareY + squareSize > 303 && squareY < 314) ||
-        (squareX + squareSize > rectX3 && squareX < rectX3 + 11 &&
-        squareY + squareSize > 155 && squareY < 166) ||
-        (squareX + squareSize > rectX4 && squareX < rectX4 + 11 &&
-        squareY + squareSize > 75 && squareY < 86)) {
-        // Collision with rectangles occurred
+
+    // Check for collisions with the boundaries
+    if (
+        squareX < 0 ||
+        squareX + squareSize > 399 ||
+        squareY < 0 ||
+        squareY + squareSize > 399
+    ) {
+        // Collision with boundaries occurred
         squareX = 10;
         squareY = 350;
+    } else {
+        // Check for collisions with specific rects
+        if (
+            (squareX + squareSize > rectX && squareX < rectX + 11 &&
+                squareY + squareSize > 227 && squareY < 238) ||
+            (squareX + squareSize > rectX2 && squareX < rectX2 + 10 &&
+                squareY + squareSize > 303 && squareY < 314) ||
+            (squareX + squareSize > rectX3 && squareX < rectX3 + 11 &&
+                squareY + squareSize > 155 && squareY < 166) ||
+            (squareX + squareSize > rectX4 && squareX < rectX4 + 11 &&
+                squareY + squareSize > 75 && squareY < 86)
+        ) {
+            // Collision with specific rects occurred
+            squareX = 10;
+            squareY = 350;
+        }
     }
+
     // Check for collisions with ellipses
     if (
         dist(squareX + squareSize / 2, squareY + squareSize / 2, 124, ellipseY1) < 15 ||
@@ -465,8 +505,11 @@ var draw = function () {
         // Collision with ellipses occurred
         squareX = 10;
         squareY = 350;
-        }
     }
+}
+
+
+
 //LEVEL 3!!
     if(currentScene === 4){
          // Layout
@@ -483,7 +526,7 @@ var draw = function () {
   rect(64, 225, 5, -71);
   rect(190, 225, 5, -71);
   rect(315, 121, 5, -71);
-  rect(128, 98, 5, -71);
+  rect(128, 120, 5, -71);
 
   // Moving ellipses
   fill(random(100,255),random(100,255),random(100,255));
@@ -551,11 +594,39 @@ var draw = function () {
      if(squareX > 315 && squareX < 395 && squareY > 315 && squareY < 395){
         currentScene = 5;
      }
-     if (dist(squareX + squareSize / 2, squareY + squareSize / 2, ellipseX1q, ellipseY1q) <     15 ||dist(squareX + squareSize / 2, squareY + squareSize / 2, 100, ellipseY1q) < 15         ||dist(squareX + squareSize / 2, squareY + squareSize / 2, 188, ellipseY1q) < 15 ||dist    (squareX + squareSize / 2, squareY + squareSize / 2, 302, ellipseY1q) < 15 ||dist(squareX     + squareSize / 2, squareY + squareSize / 2, ellipseX2q, 144) < 15 ||dist(squareX +         squareSize / 2, squareY + squareSize / 2, ellipseX3q, ellipseY3q) < 15) {
+         if (dist(squareX + squareSize / 2, squareY + squareSize / 2, ellipseX1q,             ellipseY1q) <     15 ||dist(squareX + squareSize / 2, squareY + squareSize / 2         ,100, ellipseY1q) < 15         ||dist(squareX + squareSize / 2, squareY +             squareSize / 2, 188, ellipseY1q) < 15 ||dist    (squareX + squareSize / 2, squareY + squareSize / 2, 302, ellipseY1q) < 15 ||dist(squareX     + squareSize / 2, squareY + squareSize / 2, ellipseX2q, 144) < 15 ||dist(squareX +         squareSize / 2, squareY + squareSize / 2, ellipseX3q, ellipseY3q) < 15) {
         // Collision with ellipses occurred
         squareX = 10;
         squareY = 10;
     }
+    // Check for collisions with the specified rectangles
+  if (
+    (squareX + 20 > 0 && squareX < 399 && squareY + 20 > 376 && squareY < 381) ||
+    (squareX + 20 > 0 && squareX < 399 && squareY + 20 > 280 && squareY < 285) ||
+    (squareX + 20 > 69 && squareX < 466 && squareY + 20 > 185 && squareY < 190) ||
+    (squareX + 20 > -1 && squareX < 319 && squareY + 20 > 81 && squareY < 86) ||
+    (squareX + 20 > 126 && squareX < 130 && squareY + 20 > 242 && squareY < 335) ||
+    (squareX + 20 > 258 && squareX < 263 && squareY + 20 > 253 && squareY < 324) ||
+    (squareX + 20 > 64 && squareX < 69 && squareY + 20 > 164 && squareY < 235) ||
+    (squareX + 20 > 190 && squareX < 195 && squareY + 20 > 163 && squareY < 234) ||
+    (squareX + 20 > 315 && squareX < 320 && squareY + 20 > 71 && squareY < 142) ||
+    (squareX + 20 > 128 && squareX < 133 && squareY + 20 > 109 && squareY < 180)
+  ) {
+    // Collision with specified rectangles occurred
+    squareX = 10;
+    squareY = 10;
+  }
+  // Check for collisions with the outside boundaries
+  if (
+    squareX < 0 ||
+    squareX + 20 > 399 ||
+    squareY < 0 ||
+    squareY + 20 > 399
+  ) {
+    // Collision with boundaries occurred
+    squareX = 10;
+    squareY = 10;
+  }
     }
 //FINISH!!!!
     if(currentScene === 5){
@@ -579,3 +650,6 @@ var mousePressed = function () {
         currentScene = 2;
     }
     };
+
+
+
